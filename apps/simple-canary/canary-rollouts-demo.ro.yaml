@@ -15,11 +15,11 @@ spec:
     spec:
       containers:
       - name: simple-canary
-        # image: argoproj/rollouts-demo:red
+        image: argoproj/rollouts-demo:red
         # image: argoproj/rollouts-demo:blue
         # image: argoproj/rollouts-demo:green
         # image: argoproj/rollouts-demo:yellow
-        image: argoproj/rollouts-demo:purple
+        # image: argoproj/rollouts-demo:purple
         # image: argoproj/rollouts-demo:orange
         imagePullPolicy: Always
         ports:
