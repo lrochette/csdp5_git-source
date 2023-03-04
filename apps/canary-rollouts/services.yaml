@@ -16,7 +16,7 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: canary-ro
+  name: canary-ro-preview
 spec:
   ports:
   - port: 80
