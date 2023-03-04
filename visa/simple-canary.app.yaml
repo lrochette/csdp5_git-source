@@ -14,7 +14,7 @@ spec:
     server: https://kubernetes.default.svc
   source:
     path: ./apps/simple-canary
-    repoURL: https://github.com/lrochette/csdp5.git
+    repoURL: https://github.com/lrochette/csdp5_git-source.git
     targetRevision: main
   syncPolicy:
     syncOptions:
