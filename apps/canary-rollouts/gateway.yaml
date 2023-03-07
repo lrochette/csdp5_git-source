@@ -33,7 +33,11 @@ spec:
       weight: 0 ## this is ignored by Argo Rollouts
   - match:
     - uri:
-        prefix: /preview
+        prefix: "/preview"
+    rewrite:
+      uri: "/"
     route:
     - destination:
         host: canary-ro-preview.visa.svc.cluster.local
+        port:
+          number: 80
