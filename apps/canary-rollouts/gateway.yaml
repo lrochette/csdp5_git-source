@@ -31,3 +31,9 @@ spec:
     - destination:
         host: canary-ro-preview ## referenced in canary.canaryService
       weight: 0 ## this is ignored by Argo Rollouts
+  - match:
+    - uri:
+        prefix: /preview
+    route:
+    - destination:
+        host: canary-ro-preview.visa.svc.cluster.local
