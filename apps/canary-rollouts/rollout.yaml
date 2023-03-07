@@ -51,26 +51,14 @@ spec:
       - setWeight: 20
       - pause: {duration: 10s} ## Wait for the first pod to start
       - analysis:
-        templates:
-        - templateName: success-rate
-        args:
-        - name: service  ## Service's Internal DNS record
-          value: canary-ro-preview.visa.svc.cluster.local
+          templates:
+          - templateName: success-rate
+          args:
+          - name: service  ## Service's Internal DNS record
+            value: canary-ro-preview.visa.svc.cluster.local
       - setWeight: 40
       - pause: {duration: 60s}
-      - analysis:
-        templates:
-        - templateName: success-rate
-        args:
-        - name: service  ## Service's Internal DNS record
-          value: canary-ro-preview.visa.svc.cluster.local
       - setWeight: 60
       - pause: {duration: 60s}
-      - analysis:
-        templates:
-        - templateName: success-rate
-        args:
-        - name: service  ## Service's Internal DNS record
-          value: canary-ro-preview.visa.svc.cluster.local
       - setWeight: 80
       - pause: {duration: 30s}
