@@ -17,8 +17,8 @@ spec:
       - name: canary-ro
         #image: argoproj/rollouts-demo:red
         #image: argoproj/rollouts-demo:blue
-        image: argoproj/rollouts-demo:green
-        #image: argoproj/rollouts-demo:yellow
+        # image: argoproj/rollouts-demo:green
+        image: argoproj/rollouts-demo:yellow
         #image: argoproj/rollouts-demo:purple
         #image: argoproj/rollouts-demo:orange
         imagePullPolicy: Always
@@ -32,13 +32,13 @@ spec:
             memory: 32Mi
   strategy:
     canary:
-      analysis:
-        templates:
-        - templateName: success-rate
-        args:
-        - name: service  ## Service's Internal DNS record
-          value: canary-ro-preview.visa.svc.cluster.local
-        startingStep: 2  ## Step index of the `steps` array. Index starts on zero.
+      # analysis:
+      #   templates:
+      #   - templateName: success-rate
+      #   args:
+      #   - name: service  ## Service's Internal DNS record
+      #     value: canary-ro-preview.visa.svc.cluster.local
+      #  startingStep: 2  ## Step index of the `steps` array. Index starts on zero.
       stableService: canary-ro
       canaryService: canary-ro-preview
       trafficRouting:
@@ -50,9 +50,27 @@ spec:
       steps:
       - setWeight: 20
       - pause: {duration: 10s} ## Wait for the first pod to start
+      - analysis:
+        templates:
+        - templateName: success-rate
+        args:
+        - name: service  ## Service's Internal DNS record
+          value: canary-ro-preview.visa.svc.cluster.local
       - setWeight: 40
       - pause: {duration: 60s}
+      - analysis:
+        templates:
+        - templateName: success-rate
+        args:
+        - name: service  ## Service's Internal DNS record
+          value: canary-ro-preview.visa.svc.cluster.local
       - setWeight: 60
       - pause: {duration: 60s}
+      - analysis:
+        templates:
+        - templateName: success-rate
+        args:
+        - name: service  ## Service's Internal DNS record
+          value: canary-ro-preview.visa.svc.cluster.local
       - setWeight: 80
       - pause: {duration: 30s}
