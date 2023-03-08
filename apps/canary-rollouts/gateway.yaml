@@ -1,7 +1,7 @@
 apiVersion: networking.istio.io/v1alpha3
 kind: Gateway
 metadata:
-  name: canary-ro
+  name: istio
 spec:
   selector:
     istio: ingress
@@ -11,7 +11,7 @@ spec:
       name: http
       protocol: HTTP
     hosts:
-    - "lr5.support.cf-cd.com"
+    - "*.lr5.support.cf-cd.com"
 ---
 apiVersion: networking.istio.io/v1alpha3
 kind: VirtualService
@@ -19,9 +19,9 @@ metadata:
   name: canary-ro
 spec:
   hosts:
-  - "lr5.support.cf-cd.com"
+  - "canary.lr5.support.cf-cd.com"
   gateways:
-  - canary-ro
+  - istio
   http:
   - name: primary  ## referenced in canary.trafficRouting.istio.virtualService.routes
     route:
