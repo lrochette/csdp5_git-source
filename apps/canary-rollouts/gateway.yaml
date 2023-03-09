@@ -45,6 +45,7 @@ spec:
   - match:
     - uri:
         prefix: /canary
+    route:
     - destination:
         port:
           number: 80
