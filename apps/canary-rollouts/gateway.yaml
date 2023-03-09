@@ -4,14 +4,14 @@ metadata:
   name: visa-gw
 spec:
   selector:
-    istio: ingress
+    istio: ingressgateway
   servers:
   - port:
       number: 80
       name: http
       protocol: HTTP
     hosts:
-    - "*.lr5.support.cf-cd.com"
+    - "lr5.support.cf-cd.com"
 ---
 apiVersion: networking.istio.io/v1alpha3
 kind: VirtualService
@@ -42,7 +42,9 @@ spec:
   gateways:
   - visa/visa-gw
   http:
-  - route:
+  - match:
+    - uri:
+        prefix: /canary
     - destination:
         port:
           number: 80
