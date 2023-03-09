@@ -15,12 +15,12 @@ spec:
     spec:
       containers:
       - name: canary-ro
-        #image: argoproj/rollouts-demo:red
+        image: argoproj/rollouts-demo:red
         #image: argoproj/rollouts-demo:blue
         # image: argoproj/rollouts-demo:green
         # image: argoproj/rollouts-demo:yellow
         #image: argoproj/rollouts-demo:purple
-        image: argoproj/rollouts-demo:orange
+        # image: argoproj/rollouts-demo:orange
         imagePullPolicy: Always
         ports:
         - containerPort: 8080
@@ -49,7 +49,7 @@ spec:
             - primary
       steps:
       - setWeight: 20
-      - pause: {duration: 15s} ## Wait for the first pod to start
+      - pause: {duration: 30s} ## Wait for the first pod to start
       - analysis:
           templates:
           - templateName: success-rate
@@ -57,7 +57,7 @@ spec:
           - name: service  ## Service's Internal DNS record
             value: canary-ro-preview.visa.svc.cluster.local
       - setWeight: 40
-      - pause: {duration: 15s}
+      - pause: {duration: 30s}
       - analysis:
           templates:
           - templateName: success-rate
@@ -65,7 +65,7 @@ spec:
           - name: service  ## Service's Internal DNS record
             value: canary-ro-preview.visa.svc.cluster.local
       - setWeight: 60
-      - pause: {duration: 15s}
+      - pause: {duration: 30s}
       - analysis:
           templates:
           - templateName: success-rate
@@ -73,7 +73,7 @@ spec:
           - name: service  ## Service's Internal DNS record
             value: canary-ro-preview.visa.svc.cluster.local
       - setWeight: 80
-      - pause: {duration: 15s}
+      - pause: {duration: 30s}
       - analysis:
           templates:
           - templateName: success-rate
