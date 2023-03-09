@@ -16,9 +16,9 @@ spec:
         address: http://prometheus.istio-system:9090
         query: |
           sum(
-            rate(istio_requests_total{ destination_service="{{args.service}}", response_code!~"[4-5].*"}[30s])>0
+            irate(istio_requests_total{ destination_service="{{args.service}}", response_code!~"[4-5].*"}[30s])>0
           )
           /
           sum(
-            rate(istio_requests_total{ destination_service="{{args.service}}"}[30s])>0
+            irate(istio_requests_total{ destination_service="{{args.service}}"}[30s])>0
           )
