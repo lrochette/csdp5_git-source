@@ -1,7 +1,7 @@
 apiVersion: networking.istio.io/v1alpha3
 kind: Gateway
 metadata:
-  name: istio
+  name: visa-gw
 spec:
   selector:
     istio: ingress
@@ -21,23 +21,13 @@ spec:
   hosts:
   - "canary.lr5.support.cf-cd.com"
   gateways:
-  - istio
+  - visa/visa-gw
   http:
   - name: primary  ## referenced in canary.trafficRouting.istio.virtualService.routes
     route:
     - destination:
-        host: canary-ro ## referenced in canary.stableService
+        host: canary-ro.visa.svc.cluster.local ## referenced in canary.stableService
       weight: 100 ## this is ignored by Argo Rollouts
     - destination:
-        host: canary-ro-preview ## referenced in canary.canaryService
+        host: canary-ro-preview.visa.svc.cluster.local ## referenced in canary.canaryService
       weight: 0 ## this is ignored by Argo Rollouts
-  # - match:
-  #   - uri:
-  #       prefix: "/preview"
-  #   rewrite:
-  #     uri: "/"
-  #   route:
-  #   - destination:
-  #       host: canary-ro-preview.visa.svc.cluster.local
-  #       port:
-  #         number: 80
