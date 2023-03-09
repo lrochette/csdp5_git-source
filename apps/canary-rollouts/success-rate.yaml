@@ -10,7 +10,7 @@ spec:
     failureLimit: 5   ## If there are 4 or more failures, the Analysis Run is marked as Failed.
     interval: 15s     ## This metric will be executed indefinitely every 15 seconds.
     count: 12          ## This metric will be executed 5 times only
-    successCondition:  len(result) > 0 || result[0] > 0.90
+    successCondition:  len(result) == 0 || result[0] > 0.90
     provider:
       prometheus:
         address: http://prometheus.istio-system:9090
