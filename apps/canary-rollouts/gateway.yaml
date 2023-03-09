@@ -19,7 +19,7 @@ metadata:
   name: canary-ro
 spec:
   hosts:
-  - "rollout.lr5.support.cf-cd.com"
+  - "lr5.support.cf-cd.com"
   gateways:
   - visa-gw-ro
   http:
