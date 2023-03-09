@@ -38,7 +38,7 @@ metadata:
   name: canary
 spec:
   hosts:
-  - "canary-ro.lr5.support.cf-cd.com"
+  - "lr5.support.cf-cd.com"
   gateways:
   - visa/visa-gw
   http:
