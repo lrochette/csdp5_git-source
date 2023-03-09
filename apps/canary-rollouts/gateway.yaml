@@ -21,7 +21,7 @@ spec:
   hosts:
   - "rollout.lr5.support.cf-cd.com"
   gateways:
-  - visa/visa-gw
+  - visa-gw
   http:
   - name: primary  ## referenced in canary.trafficRouting.istio.virtualService.routes
     route:
@@ -40,13 +40,13 @@ spec:
   hosts:
   - "lr5.support.cf-cd.com"
   gateways:
-  - visa/visa-gw
+  - visa-gw
   http:
   - match:
     - uri:
         prefix: /canary
     route:
     - destination:
+        host:  canary-ro.visa.svc.cluster.local
         port:
           number: 80
-        host:  canary-ro.default.svc.cluster.local
